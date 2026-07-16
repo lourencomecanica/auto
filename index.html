@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Mecânica Lourenço</title>
+  <style>
+    :root {
+      --azul: #0d1b2a;
+      --azul-claro: #0077b6;
+      --cinza: #f4f4f4;
+      --texto: #2f2f2f;
+      --branco: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--cinza);
+      color: var(--texto);
+      line-height: 1.6;
+      padding-top: 70px;
+    }
+
+    header {
+      background: var(--azul);
+      color: var(--branco);
+      padding: 20px 8%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .logo a {
+      color: var(--branco);
+      text-decoration: none;
+    }
+
+    .logo a:hover {
+      opacity: 0.8;
+    }
+
+    .logo-icon {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .nav-link {
+      color: var(--branco);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc');
+      background-size: cover;
+      background-position: center;
+      min-height: 540px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--branco);
+      padding: 40px 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin-bottom: 25px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--azul-claro);
+      color: var(--branco);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--branco);
+      border: 2px solid var(--branco);
+    }
+
+    section {
+      padding: 70px 8%;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: var(--azul);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .about-card, .card, .contact-card {
+      background: var(--branco);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .card {
+      text-align: center;
+    }
+
+    .card p {
+      margin-top: 10px;
+    }
+
+    .service-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+      margin: -25px -25px 15px -25px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      color: var(--azul);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 15px;
+      padding: 10px;
+      background: linear-gradient(135deg, var(--azul-claro), #005a9f);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 15px;
+      padding: 10px;
+      background: linear-gradient(135deg, var(--azul-claro), #005a9f);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--azul);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d7d7d7;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      background: #25D366;
+      color: var(--branco);
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .note {
+      margin-top: 10px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      background: var(--azul);
+      color: var(--branco);
+      text-align: center;
+      padding: 25px 8%;
+    }
+
+    .footer-info {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .partners {
+      background: #f9f9f9;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .partner-card {
+      background: var(--branco);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--azul-claro);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .partner-logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .partner-card h3 {
+      color: var(--azul);
+      margin-bottom: 8px;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .testimonial {
+      background: var(--branco);
+      padding: 25px;
+      border-radius: 12px;
+      border-top: 3px solid var(--azul-claro);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--azul);
+    }
+
+    .testimonial-role {
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .about, .contact, .partners, .testimonials {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .header-nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .header-nav-menu a {
+      color: var(--branco);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .header-nav-menu a:hover {
+      opacity: 0.7;
+    }
+
+    .nav-menu {
+      background: var(--branco);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      height: fit-content;
+    }
+
+    .nav-menu h3 {
+      color: var(--azul);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .nav-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-menu a {
+      color: var(--azul-claro);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px;
+      border-left: 3px solid transparent;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .nav-menu a:hover {
+      border-left-color: var(--azul-claro);
+      background: #f9f9f9;
+      padding-left: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><a href="#inicio"><svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24M19.78 19.78l-4.24-4.24m-5.08-5.08l-4.24-4.24"></path></svg>AUTO MECÂNICA LOURENÇO</a></div>
+      <ul class="header-nav-menu">
+        <li><a href="#quemsomos">Quem somos</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#parcerias">Parcerias</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <h1>Mais de 30 anos de experiência em confiança e qualidade</h1>
+    <p>Oferecemos manutenção, reparos e atendimento especializado para manter seu veículo sempre seguro e em excelente desempenho.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://wa.me/5511964009152" target="_blank" rel="noopener">Fale no WhatsApp</a>
+      <a class="btn btn-secondary" href="#contato">Solicitar parceria</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="about" id="quemsomos">
+      <div class="about-card">
+        <h2 class="section-title">Quem somos</h2>
+        <p>Somos uma oficina com tradição, comprometida com excelência no atendimento e soluções confiáveis para clientes e parceiros. Atuamos com profissionalismo, agilidade e foco na satisfação de cada pessoa que escolhe nossos serviços.</p>
+      </div>
+      <div class="about-card">
+        <h2 class="section-title">Por que escolher</h2>
+        <p>Atendimento humano, experiência consolidada, diagnóstico preciso e compromisso com a qualidade. Nossa prioridade é oferecer confiança em cada serviço prestado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <h2 class="section-title">Nossos serviços</h2>
+    <div class="services">
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk9X9K3GvzKy45cQm5UIUOjKnhACIFjdMbX-D6aPngwdeMt9o25BkGZw8&s=10" alt="Troca de óleo" class="service-image">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <circle cx="12" cy="12" r="8"></circle>
+            <path d="M12 6v6l3 2"></path>
+          </svg>
+        </div>
+        <h3>Troca de óleo</h3>
+        <p>Serviço rápido e seguro com produtos de qualidade.</p>
+      </div>
+      <div class="card">
+        <img src="https://www.canaldapeca.com.br/blog/wp-content/uploads/2016/08/Ret%C3%ADfica-no-Motor-Veja-os-Procedimentos.jpg" alt="Retífica de motor" class="service-image">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <circle cx="12" cy="8" r="3"></circle>
+            <path d="M12 11v8M9 15h6M8 20h8"></path>
+            <circle cx="5" cy="14" r="1"></circle>
+            <circle cx="19" cy="14" r="1"></circle>
+          </svg>
+        </div>
+        <h3>Retífica de motor</h3>
+        <p>Reparos especializados para garantir desempenho e durabilidade.</p>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCer5NNZ658wMHJs-Enh3rnHa2ne0ZMQUK1GXBLNRElw4p45GJT_0o-_CR&s=10" alt="Suspensão" class="service-image">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 2v6M12 9v-3M9 6h6M8 12v8M16 12v8M9 20h6"></path>
+            <circle cx="6" cy="16" r="2"></circle>
+            <circle cx="18" cy="16" r="2"></circle>
+          </svg>
+        </div>
+        <h3>Suspensão</h3>
+        <p>Manutenção e ajustes para maior estabilidade e conforto.</p>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS96WZxfwzF1ehOpbiwnha1PObyurfViYK2VtVniszPZ1SHSFU_xzLwdNo&s=10" alt="Manutenção geral" class="service-image">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 2v8M12 14v8M2 8h20M4 12h16M6 16h12"></path>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <h3>Manutenção geral</h3>
+        <p>Diagnóstico completo e cuidados preventivos para o seu veículo.</p>
+      </div>
+    </div>
+  <section id="parcerias">
+    <h2 class="section-title">Nossas parcerias</h2>
+    <div class="partners">
+      <div class="partner-card">
+        <img src="images/jh-telecom-logo.png" alt="JH Telecom Logo" class="partner-logo">
+        <h3>JH TELECOM</h3>
+        <p>Somos uma empresa especializada em <strong>soluções em fibra óptica</strong>, trazendo rapidez e qualidade nos serviços prestados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="depoimentos">
+    <h2 class="section-title">O que nossos parceiros dizem</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>"Trabalhamos com a Auto Mecânica Lourenço há mais de 2 anos e sempre recebemos atendimento de primeira qualidade. A equipe é comprometida, pontual e resolve os problemas da nossa frota com eficiência. Recomendamos fortemente para qualquer empresa que busque um parceiro confiável."</p>
+        <div class="testimonial-author">João Henrique</div>
+        <div class="testimonial-role">Proprietário - JH TELECOM</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="contact">
+      <div class="contact-card">
+        <h2 class="section-title">Parcerias e contatos</h2>
+        <p>Se você deseja fechar parceria, oferecer serviços ou conversar sobre oportunidades, envie sua mensagem pelo formulário abaixo.</p>
+        <p class="note">Também pode falar diretamente pelo WhatsApp: <strong>(11) 96400-9152</strong></p>
+        <div class="footer-info">
+          <p><strong>Localização:</strong></p>
+          <p>Rua Arnaldo Bonaventura, 649<br>Cidade Tiradentes - São Paulo / SP<br>CEP: 08470-210</p>
+          <p><strong>E-mail:</strong> automecanicalourenco@hotmail.com</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <form id="formParceria">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" placeholder="Seu nome" required>
+
+          <label for="telefone">Telefone</label>
+          <input id="telefone" name="telefone" type="tel" placeholder="(11) 99999-9999" required>
+
+          <label for="empresa">Empresa ou negócio</label>
+          <input id="empresa" name="empresa" type="text" placeholder="Nome da empresa">
+
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" placeholder="Conte-nos sobre sua proposta de parceria" required></textarea>
+
+          <button type="submit">Enviar para o WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Auto Mecânica Lourenço - Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    document.getElementById('formParceria').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const empresa = document.getElementById('empresa').value.trim();
+      const mensagem = document.getElementById('mensagem').value.trim();
+
+      const texto = `Olá! Tenho interesse em parceria.\nNome: ${nome}\nTelefone: ${telefone}\nEmpresa: ${empresa || 'Não informado'}\nMensagem: ${mensagem}`;
+
+      const url = `https://wa.me/5511964009152?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+      this.reset();
+      alert('Mensagem enviada para o WhatsApp.');
+    });
+  </script>
+</body>
+</html>
